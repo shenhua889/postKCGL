@@ -1,0 +1,10 @@
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\bin\Debug\postKCGL.exe.config
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\bin\Debug\postKCGL.exe
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\bin\Debug\postKCGL.pdb
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.csprojResolveAssemblyReference.cache
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.DWXG.resources
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.Form1.resources
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.Properties.Resources.resources
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.csproj.GenerateResource.Cache
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.exe
+c:\users\shenhua\documents\visual studio 2017\Projects\postKCGL\postKCGL\obj\Debug\postKCGL.pdb
