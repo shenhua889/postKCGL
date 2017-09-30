@@ -31,7 +31,7 @@ namespace postKCGL
             {
                 DWXG dwxg = new DWXG();
                 dwxg.MdiParent = this;
-                dwxg.WindowState = FormWindowState.Maximized;
+                //dwxg.WindowState = FormWindowState.Maximized;
                 dwxg.Show();
             }
         }
@@ -42,7 +42,7 @@ namespace postKCGL
             {
                 RK rk = new RK();
                 rk.MdiParent = this;
-                rk.WindowState = FormWindowState.Maximized;
+                //rk.WindowState = FormWindowState.Maximized;
                 rk.Show();
             }
         }
@@ -53,7 +53,7 @@ namespace postKCGL
             {
                 CK ck = new CK();
                 ck.MdiParent = this;
-                ck.WindowState = FormWindowState.Maximized;
+                //ck.WindowState = FormWindowState.Maximized;
                 ck.Show();
             }
         }
@@ -64,7 +64,7 @@ namespace postKCGL
             {
                 CX cx = new CX();
                 cx.MdiParent = this;
-                cx.WindowState = FormWindowState.Maximized;
+                //cx.WindowState = FormWindowState.Maximized;
                 cx.Show();
             }
         }
@@ -75,7 +75,7 @@ namespace postKCGL
             {
                 TJ tj = new TJ();
                 tj.MdiParent = this;
-                tj.WindowState = FormWindowState.Maximized;
+                //tj.WindowState = FormWindowState.Maximized;
                 tj.Show();
             }
         }
