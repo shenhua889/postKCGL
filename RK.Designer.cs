@@ -59,6 +59,7 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
             // 
@@ -108,9 +109,10 @@
             this.textBox2.Location = new System.Drawing.Point(183, 152);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(586, 34);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 1;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // textBox3
             // 
@@ -120,7 +122,7 @@
             this.textBox3.Location = new System.Drawing.Point(183, 252);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(425, 43);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 3;
             this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
@@ -132,7 +134,7 @@
             this.textBox4.Location = new System.Drawing.Point(183, 357);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(425, 43);
-            this.textBox4.TabIndex = 7;
+            this.textBox4.TabIndex = 4;
             this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
             this.textBox4.Leave += new System.EventHandler(this.textBox4_Leave);
             // 
@@ -168,7 +170,7 @@
             this.listBox1.Location = new System.Drawing.Point(183, 96);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(586, 249);
-            this.listBox1.TabIndex = 10;
+            this.listBox1.TabIndex = 20;
             this.listBox1.Visible = false;
             this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
             // 
@@ -183,7 +185,7 @@
             this.listBox2.Location = new System.Drawing.Point(183, 191);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(586, 247);
-            this.listBox2.TabIndex = 11;
+            this.listBox2.TabIndex = 21;
             this.listBox2.Visible = false;
             this.listBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox2_KeyDown);
             // 
@@ -195,7 +197,7 @@
             this.textBox5.Location = new System.Drawing.Point(183, 462);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(425, 43);
-            this.textBox5.TabIndex = 13;
+            this.textBox5.TabIndex = 5;
             this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
             this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
@@ -217,7 +219,7 @@
             this.textBox6.Location = new System.Drawing.Point(183, 563);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(425, 43);
-            this.textBox6.TabIndex = 15;
+            this.textBox6.TabIndex = 6;
             // 
             // label6
             // 
@@ -237,7 +239,7 @@
             this.textBox7.Location = new System.Drawing.Point(183, 656);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(425, 43);
-            this.textBox7.TabIndex = 17;
+            this.textBox7.TabIndex = 7;
             // 
             // label7
             // 
@@ -258,8 +260,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
@@ -272,6 +272,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RK";

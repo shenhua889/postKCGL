@@ -21,15 +21,15 @@ namespace postKCGL
         List<string> In_Stock_Names = new List<string>();
         private void RK_Load(object sender, EventArgs e)
         {
-            DataTable dt = msh.GetDataTable("select * from load where Flag=0");
+            DataTable dt = msh.GetDataTable("select * from `load` where Flag=0");
             foreach(DataRow  dr in dt.Rows)
             {
-                From_Names.Add(dr["From"].ToString());
+                From_Names.Add(dr["source"].ToString());
             }
-            DataTable dt1 = msh.GetDataTable("select * from From where Flag=0");
+            DataTable dt1 = msh.GetDataTable("select * from `in_stock`  where Flag=0");
             foreach(DataRow dr in dt1.Rows)
             {
-                In_Stock_Names.Add(dr["In_stock_Name"].ToString());
+                In_Stock_Names.Add(dr["Name"].ToString());
             }
         }
 
@@ -44,21 +44,27 @@ namespace postKCGL
                     listBox1.Items.Add(s);
                 }
             }
-            listBox1.Visible = true;
+            if (listBox1.Items.Count > 0)
+                listBox1.Visible = true;
+            else
+                listBox1.Visible = false;
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Down || e.KeyCode==Keys.Right || e.KeyCode==Keys.Left|| e.KeyCode==Keys.Up)
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up)
             {
-                listBox1.SelectedIndex = 0;
-                listBox1.Select();
+                if (listBox1.Visible == true && listBox1.Items.Count > 0)
+                {
+                    listBox1.SelectedIndex = 0;
+                    listBox1.Focus();
+                }
             }
             if(e.KeyCode==Keys.Enter)
             {
                 listBox1.Items.Clear();
                 listBox1.Visible = false;
-                textBox2.Select();
+                textBox2.Focus();
             }
         }
 
@@ -67,7 +73,7 @@ namespace postKCGL
             if (e.KeyCode == Keys.Enter)
             {
                 textBox1.Text = listBox1.SelectedItem.ToString();
-                textBox1.Select();
+                textBox1.Focus();
                 listBox1.Items.Clear();
                 listBox1.Visible = false;
             }
@@ -78,7 +84,7 @@ namespace postKCGL
             if (e.KeyCode == Keys.Enter)
             {
                 textBox2.Text = listBox2.SelectedItem.ToString();
-                textBox2.Select();
+                textBox2.Focus();
                 listBox2.Items.Clear();
                 listBox2.Visible = false;
             }
@@ -88,14 +94,17 @@ namespace postKCGL
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up)
             {
-                listBox2.SelectedIndex = 0;
-                listBox2.Select();
+                if (listBox2.Visible == true && listBox2.Items.Count > 0)
+                {
+                    listBox2.SelectedIndex = 0;
+                    listBox2.Focus();
+                }
             }
             if (e.KeyCode == Keys.Enter)
             {
                 listBox2.Items.Clear();
                 listBox2.Visible = false;
-                textBox3.Select();
+                textBox3.Focus();
             }
         }
 
@@ -110,14 +119,17 @@ namespace postKCGL
                     listBox2.Items.Add(name);
                 }
             }
-            listBox2.Visible = true;
+            if (listBox2.Items.Count > 0)
+                listBox2.Visible = true;
+            else
+                listBox2.Visible = false;
         }
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                textBox4.Select();
+                textBox4.Focus();
             }
         }
 
@@ -125,7 +137,7 @@ namespace postKCGL
         {
             if (e.KeyCode == Keys.Enter)
             {
-                textBox5.Select();
+                textBox5.Focus();
             }
         }
 
@@ -140,6 +152,7 @@ namespace postKCGL
         private void button1_Click(object sender, EventArgs e)
         {
             MySqlParameter[] msp = new MySqlParameter[11];
+            string sqlStr = "";
             msp[0] = new MySqlParameter("?ID", MySqlDbType.Int32, 10);
             msp[1] = new MySqlParameter("?Name", MySqlDbType.VarChar, 80);
             msp[1].Value = textBox2.Text;
@@ -157,30 +170,42 @@ namespace postKCGL
             msp[7].Value = textBox7.Text;
             msp[8] = new MySqlParameter("?Flag", MySqlDbType.Int16, 1);
             msp[8].Value = 1;
-            msp[9] = new MySqlParameter("?From", MySqlDbType.Int32, 10);
+            msp[9] = new MySqlParameter("?source", MySqlDbType.Int32, 10);
             msp[9].Value = textBox1.Text;
-            msp[10] = new MySqlParameter("?From_ID", MySqlDbType.Int32, 10);
-            string sqlStr = "insert into in_stock(Name,amount,price,cost_price,From,Address,Flag) values(?Name,?amount,?price,?cost_price,?From,?Address,0)";
+            msp[10] = new MySqlParameter("?source_RC", MySqlDbType.Int32, 10);
+            //先去库存表内找是否有该商品
+            sqlStr = "select * from in_stock where Name=?Name and price=?price and cost_price=?cost_price";
+            if (msh.ExecuteDataTable(sqlStr, msp).Rows.Count == 1)
+            {
+                sqlStr = "update in_stock set amount=+?amount where Name=?Name and price =?price and cost_price=?cost_price";
+            }
+            else
+            {
+                sqlStr = "insert into in_stock(Name,amount,price,cost_price,Address,Flag)"
+                         +" values (?Name,?amount,?price,?cost_price,?Address,0)";
+            }
             if(msh.ExecuteNonQuery(sqlStr, msp)==1)
             {
-                sqlStr = "select * from in_stock where Name=?Name and amount=?amount and price=?price and cost_price=?cost_price";
+                //查询库存表中的商品ID
+                sqlStr = "select * from in_stock where Name=?Name and price=?price and cost_price=?cost_price";
                 DataTable temp = msh.GetDataTable(sqlStr, msp);
                 msp[0].Value = temp.Rows[0]["ID"];
-                sqlStr = "select * from load where From=?From";
+                //获取入库的序列号
+                sqlStr = "select * from load where source=?source";
                 temp = msh.GetDataTable(sqlStr, msp);
-                int from_id = 0;
+                int source_RC = 0;
                 foreach(DataRow dr in temp.Rows)
                 {
                     if (dr["Date"].ToString().Substring(0, 4) == DateTime.Now.ToString("D").Substring(4))
                     {
-                        if(int.Parse(dr["From_ID"].ToString())>from_id)
+                        if(int.Parse(dr["source_RC"].ToString())>source_RC)
                         {
-                            from_id = int.Parse(dr["From_ID"].ToString());
+                            source_RC = int.Parse(dr["source_RC"].ToString());
                         }
                     }
                 }
-                msp[10].Value = from_id;
-                sqlStr = "insert into load(In_stock_ID,In_stock_Name,Date,Amount,price,cost_price,From,From_ID,Remark,Flag) values(?ID,?Name,?Date,?amount,?price,?cost_price,?From,?From_ID,?Remark,0)";
+                msp[10].Value = source_RC+1;
+                sqlStr = "insert into load(In_stock_ID,In_stock_Name,Date,Amount,price,cost_price,source,source_RC,Remark,Flag) values(?ID,?Name,?Date,?amount,?price,?cost_price,?source,?source_RC,?Remark,0)";
                 msh.ExecuteNonQuery(sqlStr, msp);
             }
             
@@ -213,7 +238,7 @@ namespace postKCGL
             if(!decimal.TryParse(textBox3.Text,out d))
             {
                 MessageBox.Show("这不是一个数字");
-                textBox3.Select();
+                textBox3.Focus();
             }
         }
 
@@ -223,7 +248,7 @@ namespace postKCGL
             if (!decimal.TryParse(textBox4.Text, out d))
             {
                 MessageBox.Show("这不是一个数字");
-                textBox4.Select();
+                textBox4.Focus();
             }
         }
 
@@ -233,7 +258,25 @@ namespace postKCGL
             if (!decimal.TryParse(textBox5.Text, out d))
             {
                 MessageBox.Show("这不是一个数字");
-                textBox5.Select();
+                textBox5.Focus();
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (!listBox1.Focused)
+            {
+                listBox1.Items.Clear();
+                listBox1.Visible = false;
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (!listBox2.Focused)
+            {
+                listBox2.Items.Clear();
+                listBox2.Visible = false;
             }
         }
     }
