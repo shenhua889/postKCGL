@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace postKCGL
 {
-    public partial class CK : Form
+    public partial class 出库 : Form
     {
-        public CK()
+        public 出库()
         {
             InitializeComponent();
         }

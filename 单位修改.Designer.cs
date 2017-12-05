@@ -1,6 +1,6 @@
 ﻿namespace postKCGL
 {
-    partial class DWXG
+    partial class 单位修改
     {
         /// <summary>
         /// Required designer variable.

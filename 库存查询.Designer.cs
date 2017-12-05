@@ -1,6 +1,6 @@
 ﻿namespace postKCGL
 {
-    partial class CX
+    partial class 库存查询
     {
         /// <summary>
         /// Required designer variable.

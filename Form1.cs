@@ -29,7 +29,7 @@ namespace postKCGL
         {
             if(DecideChildForm())
             {
-                DWXG dwxg = new DWXG();
+                单位修改 dwxg = new 单位修改();
                 dwxg.MdiParent = this;
                 //dwxg.WindowState = FormWindowState.Maximized;
                 dwxg.Show();
@@ -38,20 +38,14 @@ namespace postKCGL
 
         private void 入库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(DecideChildForm())
-            {
-                RK rk = new RK();
-                rk.MdiParent = this;
-                //rk.WindowState = FormWindowState.Maximized;
-                rk.Show();
-            }
+
         }
 
         private void 出库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DecideChildForm())
             {
-                CK ck = new CK();
+                出库 ck = new 出库();
                 ck.MdiParent = this;
                 //ck.WindowState = FormWindowState.Maximized;
                 ck.Show();
@@ -62,7 +56,7 @@ namespace postKCGL
         {
             if (DecideChildForm())
             {
-                CX cx = new CX();
+                库存查询 cx = new 库存查询();
                 cx.MdiParent = this;
                 //cx.WindowState = FormWindowState.Maximized;
                 cx.Show();
@@ -73,7 +67,7 @@ namespace postKCGL
         {
             if (DecideChildForm())
             {
-                TJ tj = new TJ();
+                统计 tj = new 统计();
                 tj.MdiParent = this;
                 //tj.WindowState = FormWindowState.Maximized;
                 tj.Show();
@@ -83,6 +77,17 @@ namespace postKCGL
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DecideChildForm())
+            {
+                新增 rk = new 新增();
+                rk.MdiParent = this;
+                //rk.WindowState = FormWindowState.Maximized;
+                rk.Show();
+            }
         }
     }
 }

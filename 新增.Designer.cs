@@ -1,6 +1,6 @@
 ﻿namespace postKCGL
 {
-    partial class RK
+    partial class 新增
     {
         /// <summary>
         /// Required designer variable.
@@ -251,11 +251,13 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "备注";
             // 
-            // RK
+            // 新增
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 878);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox6);
@@ -272,11 +274,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "RK";
+            this.Name = "新增";
             this.Text = "RK";
             this.Load += new System.EventHandler(this.RK_Load);
             this.ResumeLayout(false);

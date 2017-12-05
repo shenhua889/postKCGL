@@ -1,6 +1,6 @@
 ﻿namespace postKCGL
 {
-    partial class CK
+    partial class 统计
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "CK";
+            this.Text = "TJ";
         }
 
         #endregion

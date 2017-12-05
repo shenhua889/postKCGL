@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace postKCGL
 {
-    public partial class DWXG : Form
+    public partial class 单位修改 : Form
     {
-        public DWXG()
+        public 单位修改()
         {
             InitializeComponent();
         }

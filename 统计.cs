@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace postKCGL
 {
-    public partial class CX : Form
+    public partial class 统计 : Form
     {
-        public CX()
+        public 统计()
         {
             InitializeComponent();
         }

@@ -19,10 +19,10 @@ D:\post\postKCGL\postKCGL\bin\Debug\NPOI.OpenXml4Net.dll
 D:\post\postKCGL\postKCGL\bin\Debug\NPOI.OpenXmlFormats.dll
 D:\post\postKCGL\postKCGL\bin\Debug\NPOI.xml
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.csprojResolveAssemblyReference.cache
-D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.DWXG.resources
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.Form1.resources
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.Properties.Resources.resources
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.csproj.GenerateResource.Cache
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.exe
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.pdb
-D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.RK.resources
+D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.单位修改.resources
+D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.新增.resources

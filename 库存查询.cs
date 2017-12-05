@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace postKCGL
 {
-    public partial class TJ : Form
+    public partial class 库存查询 : Form
     {
-        public TJ()
+        public 库存查询()
         {
             InitializeComponent();
         }
