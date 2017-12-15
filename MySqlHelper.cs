@@ -157,10 +157,15 @@ namespace postKCGL
 
         #endregion ExecuteDataRow
         #region GetDataCountNum
-        public int GetDataCountNum(string DBname)
+        /// <summary>
+        /// 获取表的总数
+        /// </summary>
+        /// <param name="DBname">数据表名</param>
+        /// <returns></returns>
+        public int GetDataCountNum(string TableName)
         {
             MySqlConnection connectoin = new MySqlConnection(ConnectionString);
-            return int.Parse(GetDataTable("select count(*) from " + DBname).Rows[0][0].ToString());
+            return int.Parse(GetDataTable("select count(*) from " + TableName).Rows[0][0].ToString());
         }
         #endregion
         #region GetEmptyDataTable

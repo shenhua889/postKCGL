@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace postKCGL
 {
-    public partial class 新增 : Form
+    public partial class 入库 : Form
     {
-        public 新增()
+        public 入库()
         {
             InitializeComponent();
         }
@@ -58,11 +58,6 @@ namespace postKCGL
                 Flag = true;
                 textBox5.Select();
             }
-            else if (textBox6.Text == "")
-            {
-                Flag = true;
-                textBox6.Select();
-            }
             if (Flag == true)
                 MessageBox.Show("请填写参数");
             return Flag;
@@ -70,12 +65,12 @@ namespace postKCGL
         private void IsFinal()
         {
             MessageBox.Show("已经添加成功\r\n进货单位:"+textBox1.Text+"\r\n名称:"+textBox2.Text+"\r\n数量:"+textBox3.Text
-                +"\r\n单价:"+textBox4.Text+"\r\n结算单价:"+textBox5.Text+"\r\n物理地址:"+textBox6.Text+"\r\n备注"+textBox7.Text);
+                +"\r\n单价:"+textBox4.Text+"\r\n结算单价:"+textBox5.Text+"\r\n备注"+textBox7.Text);
             this.Close();
         }
         private void RK_Load(object sender, EventArgs e)
         {
-            DataTable dt = msh.GetDataTable("select * from `inload` where Flag=0");
+            DataTable dt = msh.GetDataTable("select * from `inload` where Flag=0 group by source");
             foreach(DataRow  dr in dt.Rows)
             {
                 From_Names.Add(dr["source"].ToString());
@@ -98,7 +93,10 @@ namespace postKCGL
                 }
             }
             if (listBox1.Items.Count > 0)
+            {
                 listBox1.Visible = true;
+                listBox1.SelectedIndex = 0;
+            }
             else
                 listBox1.Visible = false;
         }
@@ -175,6 +173,8 @@ namespace postKCGL
             }
             if (e.KeyCode == Keys.Enter)
             {
+                if (listBox2.Visible == true)
+                    textBox2.Text = listBox2.SelectedItem.ToString();
                 listBox2.Items.Clear();
                 listBox2.Visible = false;
                 textBox3.Select();
@@ -192,7 +192,10 @@ namespace postKCGL
                 }
             }
             if (listBox2.Items.Count > 0)
+            {
                 listBox2.Visible = true;
+                listBox2.SelectedIndex = 0;
+            }
             else
                 listBox2.Visible = false;
         }
@@ -217,7 +220,7 @@ namespace postKCGL
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1.PerformClick();
+                textBox7.Select();
             }
         }
 
@@ -225,8 +228,9 @@ namespace postKCGL
         {
             if (!TextIsNotNull())
             {
-                MySqlParameter[] msp = new MySqlParameter[11];
+                MySqlParameter[] msp = new MySqlParameter[10];
                 string sqlStr = "";
+                bool Flag = false;
                 msp[0] = new MySqlParameter("?ID", MySqlDbType.Int32, 10);
                 msp[1] = new MySqlParameter("?Name", MySqlDbType.VarChar, 80);
                 msp[1].Value = textBox2.Text;
@@ -238,52 +242,59 @@ namespace postKCGL
                 msp[4].Value = textBox4.Text;
                 msp[5] = new MySqlParameter("?price", MySqlDbType.Decimal, 10);
                 msp[5].Value = textBox5.Text;
-                msp[6] = new MySqlParameter("?Address", MySqlDbType.VarChar, 80);
-                msp[6].Value = textBox6.Text;
-                msp[7] = new MySqlParameter("?Remark", MySqlDbType.VarChar, 80);
-                msp[7].Value = textBox7.Text;
-                msp[8] = new MySqlParameter("?Flag", MySqlDbType.Int16, 1);
-                msp[8].Value = 1;
-                msp[9] = new MySqlParameter("?source", MySqlDbType.VarChar, 80);
-                msp[9].Value = textBox1.Text;
-                msp[10] = new MySqlParameter("?source_RC", MySqlDbType.Int32, 10);
+                //msp[6] = new MySqlParameter("?Address", MySqlDbType.VarChar, 80);
+                //msp[6].Value = textBox6.Text;
+                msp[6] = new MySqlParameter("?Remark", MySqlDbType.VarChar, 80);
+                msp[6].Value = textBox7.Text;
+                msp[7] = new MySqlParameter("?Flag", MySqlDbType.Int16, 1);
+                msp[7].Value = 1;
+                msp[8] = new MySqlParameter("?source", MySqlDbType.VarChar, 80);
+                msp[8].Value = textBox1.Text;
+                msp[9] = new MySqlParameter("?source_RC", MySqlDbType.Int32, 10);
                 //先去库存表内找是否有该商品
-                sqlStr = "select * from in_stock where Name=?Name and Flag=0";
+                sqlStr = "select * from in_stock where Name=?Name  and price=?price and cost_price=?cost_price and Flag=0";
                 if (msh.ExecuteDataTable(sqlStr, msp).Rows.Count == 1)
                 {
-                    textBox2.Select();
-                    MessageBox.Show("当前商品名称已经存在");
+                    sqlStr = "update in_stock set amount=amount+?amount where Name=?Name  and price=?price and cost_price=?cost_price and Flag=0";
+                    if(msh.ExecuteNonQuery(sqlStr,msp)==1)
+                    {
+                        Flag = true;
+                    }
                 }
                 else
                 {
-                    sqlStr = "insert into in_stock(Name,amount,price,cost_price,Address,Flag)"
-                             + " values (?Name,?amount,?price,?cost_price,?Address,0)";
+                    sqlStr = "insert into in_stock(Name,amount,price,cost_price,Flag)"
+                             + " values (?Name,?amount,?price,?cost_price,0)";
                     if (msh.ExecuteNonQuery(sqlStr, msp) == 1)//是否添加库存表成功
                     {
-                        //查询库存表中的商品ID
-                        sqlStr = "select * from in_stock where Name=?Name and Flag=0";
-                        DataTable temp = msh.GetDataTable(sqlStr, msp);
-                        msp[0].Value = temp.Rows[0]["ID"];
-                        //获取入库的序列号
-                        sqlStr = "select * from inload where source=?source";
-                        temp = msh.GetDataTable(sqlStr, msp);
-                        int source_RC = 0;
-                        foreach (DataRow dr in temp.Rows)
+                        Flag = true;
+                    }
+                }
+                if(Flag==true)//in_stock表修改成功，追加inload表
+                {
+                    //查询库存表中的商品ID
+                    sqlStr = "select * from in_stock where Name=?Name and Flag=0";
+                    DataTable temp = msh.GetDataTable(sqlStr, msp);
+                    msp[0].Value = temp.Rows[0]["ID"];
+                    //获取入库的序列号
+                    sqlStr = "select * from inload where source=?source";
+                    temp = msh.GetDataTable(sqlStr, msp);
+                    int source_RC = 0;
+                    foreach (DataRow dr in temp.Rows)
+                    {
+                        if (dr["Date"].ToString().Substring(0, 4) == DateTime.Now.ToString("D").Substring(4))
                         {
-                            if (dr["Date"].ToString().Substring(0, 4) == DateTime.Now.ToString("D").Substring(4))
+                            if (int.Parse(dr["source_RC"].ToString()) > source_RC)
                             {
-                                if (int.Parse(dr["source_RC"].ToString()) > source_RC)
-                                {
-                                    source_RC = int.Parse(dr["source_RC"].ToString());
-                                }
+                                source_RC = int.Parse(dr["source_RC"].ToString());
                             }
                         }
-                        msp[10].Value = source_RC + 1;
-                        sqlStr = "insert into inload(In_stock_ID,In_stock_Name,Date,Amount,price,cost_price,source,source_RC,Remark,Flag) "
-                                  + "values (?ID,?Name,?Date,?amount,?price,?cost_price,?source,?source_RC,?Remark,0)";
-                        if(msh.ExecuteNonQuery(sqlStr, msp)==1)
-                            IsFinal();
                     }
+                    msp[9].Value = source_RC + 1;
+                    sqlStr = "insert into inload(In_stock_ID,In_stock_Name,Date,Amount,price,cost_price,source,source_RC,Remark,Flag) "
+                              + "values (?ID,?Name,?Date,?amount,?price,?cost_price,?source,?source_RC,?Remark,0)";
+                    if (msh.ExecuteNonQuery(sqlStr, msp) == 1)
+                        IsFinal();
                 }
             }
         }
@@ -346,6 +357,14 @@ namespace postKCGL
             {
                 listBox2.Items.Clear();
                 listBox2.Visible = false;
+            }
+        }
+
+        private void textBox7_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
             }
         }
     }

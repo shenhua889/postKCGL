@@ -38,7 +38,13 @@ namespace postKCGL
 
         private void 入库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (DecideChildForm())
+            {
+                入库 rk = new 入库();
+                rk.MdiParent = this;
+                //rk.WindowState = FormWindowState.Maximized;
+                rk.Show();
+            }
         }
 
         private void 出库ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,17 +83,6 @@ namespace postKCGL
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-        }
-
-        private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (DecideChildForm())
-            {
-                新增 rk = new 新增();
-                rk.MdiParent = this;
-                //rk.WindowState = FormWindowState.Maximized;
-                rk.Show();
-            }
         }
     }
 }

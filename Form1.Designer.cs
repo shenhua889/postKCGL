@@ -34,8 +34,6 @@
             this.出库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.库存查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.追加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,9 +61,6 @@
             // 
             // 入库ToolStripMenuItem
             // 
-            this.入库ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增ToolStripMenuItem,
-            this.追加ToolStripMenuItem});
             this.入库ToolStripMenuItem.Name = "入库ToolStripMenuItem";
             this.入库ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.入库ToolStripMenuItem.Text = "入库";
@@ -91,19 +86,6 @@
             this.统计ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.统计ToolStripMenuItem.Text = "统计";
             this.统计ToolStripMenuItem.Click += new System.EventHandler(this.统计ToolStripMenuItem_Click);
-            // 
-            // 新增ToolStripMenuItem
-            // 
-            this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.新增ToolStripMenuItem.Text = "新增";
-            this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
-            // 
-            // 追加ToolStripMenuItem
-            // 
-            this.追加ToolStripMenuItem.Name = "追加ToolStripMenuItem";
-            this.追加ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.追加ToolStripMenuItem.Text = "追加";
             // 
             // Form1
             // 
@@ -131,8 +113,6 @@
         private System.Windows.Forms.ToolStripMenuItem 出库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 库存查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 统计ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 新增ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 追加ToolStripMenuItem;
     }
 }
 

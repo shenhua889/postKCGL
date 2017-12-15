@@ -91,17 +91,23 @@
     <Compile Include="NPExcel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="新增.cs">
+    <Compile Include="入库.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="新增.Designer.cs">
-      <DependentUpon>新增.cs</DependentUpon>
+    <Compile Include="入库.Designer.cs">
+      <DependentUpon>入库.cs</DependentUpon>
     </Compile>
     <Compile Include="统计.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="统计.Designer.cs">
       <DependentUpon>统计.cs</DependentUpon>
+    </Compile>
+    <Compile Include="追加.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="追加.Designer.cs">
+      <DependentUpon>追加.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="单位修改.resx">
       <DependentUpon>单位修改.cs</DependentUpon>
@@ -119,8 +125,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="新增.resx">
-      <DependentUpon>新增.cs</DependentUpon>
+    <EmbeddedResource Include="入库.resx">
+      <DependentUpon>入库.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="追加.resx">
+      <DependentUpon>追加.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

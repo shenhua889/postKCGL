@@ -25,4 +25,5 @@ D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.csproj.GenerateResource.Cache
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.exe
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.pdb
 D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.单位修改.resources
-D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.新增.resources
+D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.追加.resources
+D:\post\postKCGL\postKCGL\obj\Debug\postKCGL.入库.resources
