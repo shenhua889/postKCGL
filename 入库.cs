@@ -252,10 +252,10 @@ namespace postKCGL
                 msp[8].Value = textBox1.Text;
                 msp[9] = new MySqlParameter("?source_RC", MySqlDbType.Int32, 10);
                 //先去库存表内找是否有该商品
-                sqlStr = "select * from in_stock where Name=?Name  and price=?price and cost_price=?cost_price and Flag=0";
+                sqlStr = "select * from in_stock where Name=?Name and cost_price=?cost_price and Flag=0";
                 if (msh.ExecuteDataTable(sqlStr, msp).Rows.Count == 1)
                 {
-                    sqlStr = "update in_stock set amount=amount+?amount where Name=?Name  and price=?price and cost_price=?cost_price and Flag=0";
+                    sqlStr = "update in_stock set amount=amount+?amount where Name=?Name and cost_price=?cost_price and Flag=0";
                     if(msh.ExecuteNonQuery(sqlStr,msp)==1)
                     {
                         Flag = true;

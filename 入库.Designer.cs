@@ -98,7 +98,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 36);
             this.label4.TabIndex = 4;
-            this.label4.Text = "单价";
+            this.label4.Text = "进价";
             // 
             // textBox2
             // 
@@ -214,9 +214,9 @@
             this.label5.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(24, 466);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 36);
+            this.label5.Size = new System.Drawing.Size(71, 36);
             this.label5.TabIndex = 12;
-            this.label5.Text = "结算单价";
+            this.label5.Text = "售价";
             // 
             // textBox7
             // 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2017-12-15 16:19:49
+Date: 2017-12-22 18:58:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `inload` (
   `Remark` varchar(80) DEFAULT NULL,
   `FLAG` int(1) DEFAULT NULL,
   PRIMARY KEY (`RC`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of inload
@@ -41,6 +41,9 @@ INSERT INTO `inload` VALUES ('1', '2', '1', '2017年12月5日', '11', '11', '11'
 INSERT INTO `inload` VALUES ('2', '108', '222', '2017年12月5日', '2', '2', '2', '1111', '1', '2', '0');
 INSERT INTO `inload` VALUES ('3', '109', '测试数据', '2017年12月5日', '10', '30', '20', '省邮电', '1', '测试备注', '0');
 INSERT INTO `inload` VALUES ('4', '110', '123123', '2017年12月5日', '123', '123', '123', '1111', '1', '123', '0');
+INSERT INTO `inload` VALUES ('5', '107', '111', '2017年12月15日', '1', '11', '1', '1', '1', '', '0');
+INSERT INTO `inload` VALUES ('6', '107', '111', '2017年12月15日', '1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `inload` VALUES ('7', '107', '111', '2017年12月15日', '1', '1', '1', '1', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for `in_stock`
@@ -55,7 +58,7 @@ CREATE TABLE `in_stock` (
   `Address` varchar(80) DEFAULT NULL,
   `Flag` int(1) DEFAULT NULL COMMENT '0为存在，1为删除',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of in_stock
@@ -164,6 +167,7 @@ INSERT INTO `in_stock` VALUES ('107', '111', '1', '1', '11', '1', '0');
 INSERT INTO `in_stock` VALUES ('108', '222', '2', '2', '2', '2', '0');
 INSERT INTO `in_stock` VALUES ('109', '测试数据', '10', '30', '20', '测试位置', '0');
 INSERT INTO `in_stock` VALUES ('110', '123123', '123', '123', '123', '123', '0');
+INSERT INTO `in_stock` VALUES ('111', '111', '1', '11', '1', null, '0');
 
 -- ----------------------------
 -- Table structure for `outload`
@@ -175,8 +179,11 @@ CREATE TABLE `outload` (
   `In_stock_Name` varchar(80) DEFAULT NULL,
   `Unit_ID` int(10) DEFAULT NULL,
   `Unit_Name` varchar(80) DEFAULT NULL,
-  `Amount` decimal(10,0) DEFAULT NULL,
-  `Time` datetime DEFAULT NULL,
+  `cost_price` decimal(10,0) DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
+  `Amount` int(10) DEFAULT NULL,
+  `Date` varchar(20) DEFAULT NULL,
+  `Remark` varchar(80) DEFAULT NULL,
   `Flag` int(1) DEFAULT NULL,
   PRIMARY KEY (`RC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

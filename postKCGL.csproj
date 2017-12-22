@@ -109,6 +109,9 @@
     <Compile Include="追加.Designer.cs">
       <DependentUpon>追加.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="出库.resx">
+      <DependentUpon>出库.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="单位修改.resx">
       <DependentUpon>单位修改.cs</DependentUpon>
     </EmbeddedResource>
