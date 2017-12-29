@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2017-12-22 18:58:30
+Date: 2017-12-29 19:34:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -159,7 +159,7 @@ INSERT INTO `in_stock` VALUES ('94', 'G20纪念版邮资封、明信片', '1', '
 INSERT INTO `in_stock` VALUES ('95', '鸡票首发特惠《十二生肖之鸡年酉福》贺岁套装（原价30元，6日0点下架）', '1', '0', null, null, '0');
 INSERT INTO `in_stock` VALUES ('96', '精选品牌蚕丝夏被，送爱的人一个舒适的睡眠', '1', '0', null, null, '0');
 INSERT INTO `in_stock` VALUES ('97', '送长辈24K金箔康乃馨＋主题明信片套装', '1', '0', null, null, '0');
-INSERT INTO `in_stock` VALUES ('103', '11', '11', '11', '11', '11', '0');
+INSERT INTO `in_stock` VALUES ('103', '11', '0', '11', '11', '11', '0');
 INSERT INTO `in_stock` VALUES ('104', '【杭州邮政】《美丽杭州 诗意西湖》西湖十景诗歌明信片', '10', '30', '20', '测试', '0');
 INSERT INTO `in_stock` VALUES ('105', '【杭州邮政】预售《美丽杭州 诗意西湖》西湖十景诗歌明信片', '10', '30', '20', '测试', '0');
 INSERT INTO `in_stock` VALUES ('106', '西湖123', '10', '30', '20', '册似乎', '0');
@@ -179,6 +179,7 @@ CREATE TABLE `outload` (
   `In_stock_Name` varchar(80) DEFAULT NULL,
   `Unit_ID` int(10) DEFAULT NULL,
   `Unit_Name` varchar(80) DEFAULT NULL,
+  `Unit_RC` int(10) DEFAULT NULL,
   `cost_price` decimal(10,0) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `Amount` int(10) DEFAULT NULL,
@@ -186,11 +187,15 @@ CREATE TABLE `outload` (
   `Remark` varchar(80) DEFAULT NULL,
   `Flag` int(1) DEFAULT NULL,
   PRIMARY KEY (`RC`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of outload
 -- ----------------------------
+INSERT INTO `outload` VALUES ('1', '107', '111', '1', '沈骅', '1', '11', '1', '1', '2017年12月29日', '1', '0');
+INSERT INTO `outload` VALUES ('2', '103', '11', '1', '沈骅', '2', '11', '11', '1', '2017年12月29日', 'test', '0');
+INSERT INTO `outload` VALUES ('3', '103', '11', '1', '沈骅', '3', '11', '1', '1', '2017年12月29日', '123', '0');
+INSERT INTO `outload` VALUES ('4', '103', '11', '1', '沈骅', '4', '11', '11', '1', '2017年12月29日', 'test', '0');
 
 -- ----------------------------
 -- Table structure for `unit`
